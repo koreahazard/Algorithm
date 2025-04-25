@@ -1,13 +1,8 @@
 class Solution {
     public int[] solution(long n) {
         int[] answer = {};
-        int length=0;
-        long n2 = n;
-        while(n2!=0)
-        {
-            n2 /= 10;
-            length++;
-        }
+        
+        int length = String.valueOf(n).length();
         answer = new int[length];
         for(int i=0;i<length;i++)
         {
