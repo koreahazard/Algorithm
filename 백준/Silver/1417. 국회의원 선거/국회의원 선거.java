@@ -8,24 +8,24 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int num = Integer.parseInt(st.nextToken());
-        int[] arr = new int[num];
-        for (int i = 0; i < num; i++) {
-            arr[i] = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+        int myVote = Integer.parseInt(st.nextToken());
+        int voteNeeded = 0;
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i = 0; i < num-1; i++) {
+            maxHeap.add(Integer.parseInt(br.readLine()));
         }
-        int votesNeeded = 0;
-        while (arr[0] < arr[getMaXIndex(arr)] || getMaXIndex(arr) != 0) {
-            arr[getMaXIndex(arr)]--;
-            arr[0]++;
-            votesNeeded++;
+        int getMax;
+        while(!maxHeap.isEmpty() && myVote <=maxHeap.peek()) {
+            getMax = maxHeap.poll();
+            maxHeap.add(getMax - 1);
+            voteNeeded++;
+            myVote++;
         }
-        System.out.println(votesNeeded);
+
+        System.out.println(voteNeeded);
+
+
     }
-    public static int getMaXIndex(int[] arr) {
-        int maxIndex=0;
-        for (int index = 1; index < arr.length; index++) {
-            if (arr[maxIndex] <= arr[index])
-                maxIndex = index;
-        }
-        return maxIndex;
-    }
+
 }
